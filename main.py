@@ -6,7 +6,7 @@ import base64
 from dotenv import load_dotenv
 
 
-def ():
+def load_pass():
     load_dotenv()
 
     password = os.getenv("ENCRYPTION_PASSWORD")
