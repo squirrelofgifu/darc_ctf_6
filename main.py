@@ -3,12 +3,15 @@ import os
 from pathlib import Path
 from cryptography.fernet import Fernet, InvalidToken
 import base64
+from dotenv import load_dotenv
 
 
-def load_pass():
+def ():
+    load_dotenv()
 
     password = os.getenv("ENCRYPTION_PASSWORD")
-    key = base64.urlsafe_b64encode(password)
+    key_bytes = password.encode('utf-8').ljust(32)[:32]
+    key = base64.urlsafe_b64encode(key_bytes)
     return key
 
 
@@ -38,7 +41,7 @@ def decrypt_file(filepath: str):
         print(f"Error: File not found: {filepath}")
         sys.exit(1)
 
-    key = load_password_from_env()
+    key = load_pass()
     f = Fernet(key)
 
     # Guess output filename
